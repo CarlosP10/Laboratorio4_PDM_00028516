@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.cardview_movie.*
 import org.json.JSONObject
 import java.io.IOException
 import java.net.URL
@@ -24,6 +25,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initRecyclerView()
+        initSearchBar()
+    }
+
+    fun initSearchBar() = add_movie_btn.setOnClickListener{
+        if(!movie_name_et.text.isEmpty()){
+            FetchMovie().execute(movie_name_et.text.toString())
+        }
     }
 
     fun initRecyclerView(){
